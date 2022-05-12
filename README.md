@@ -43,11 +43,28 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 If you are using a remote machine, remember to set the `--address` flag.
 
 _Example_
-
+```
 kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 128.112.93.8
+```
 
 **Option 2** Service Type Load Balancer
 
 ```
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
+
+#### Login using UI
+
+**Get the Initial Password**
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+You should see an output similar to `fboS9Fj-sBwetVyB` which is our initial password.
+
+```
+USERNAME: admin
+PASSWORD: fboS9Fj-sBwetVyB
+```
+
+
+
