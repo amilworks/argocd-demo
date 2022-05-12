@@ -13,4 +13,26 @@ After moving BisQue to full K8s, I started using ArgoCD for BisQue as our Contin
 ArgoCD offers two types of installation methods
 
   - **Quickstart** Mainly for trying out ArgoCD, small to large projects would see an immediate use case, in my opinion.
-  - **Production HA** The route to go for production 
+  - **Production HA** The route to go for production
+
+**NOTE:** I am assuming you have `kubectl` installed and you know the location of your `KUBECONFIG` file.
+
+  - [x] `kubectl` CLI Installed
+  - [x] `KUBECONFIG` (default location is `~/.kube/config`).
+
+### Quickstart
+
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Creates `argocd` namespace and installs Argo CD application.
+
+
+#### Access UI via Port-Forwarding
+
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
