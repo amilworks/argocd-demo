@@ -15,10 +15,13 @@ ArgoCD offers two types of installation methods
   - **Quickstart** Mainly for trying out ArgoCD, small to large projects would see an immediate use case, in my opinion.
   - **Production HA** The route to go for production
 
+---
 **NOTE:** I am assuming you have `kubectl` installed and you know the location of your `KUBECONFIG` file.
 
   - [x] `kubectl` CLI Installed
   - [x] `KUBECONFIG` (default location is `~/.kube/config`).
+---
+
 
 ### Quickstart
 
@@ -30,9 +33,21 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 Creates `argocd` namespace and installs Argo CD application.
 
 
-#### Access UI via Port-Forwarding
+#### Access UI 
+
+**Option 1** Port-Forwarding
 
 ```
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
+If you are using a remote machine, remember to set the `--address` flag.
 
+_Example_
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 128.112.93.8
+
+**Option 2** Service Type Load Balancer
+
+```
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
