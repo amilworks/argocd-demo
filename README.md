@@ -30,7 +30,20 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-Creates `argocd` namespace and installs Argo CD application.
+Creates `argocd` namespace and installs Argo CD application. You should see the following successful deployment of the pods:
+
+```
+[root@amil ~]# kubectl get pods -n argocd
+NAME                                                READY   STATUS    RESTARTS      AGE
+argocd-notifications-controller-5549f47758-c46f7    1/1     Running   0             31m
+argocd-redis-79bdbdf78f-c42zc                       1/1     Running   0             31m
+argocd-applicationset-controller-79f97597cb-bxfgg   1/1     Running   1 (30m ago)   31m
+argocd-dex-server-6fd8b59f5b-rzbpb                  1/1     Running   0             31m
+argocd-application-controller-0                     1/1     Running   0             31m
+argocd-repo-server-5569c7b657-k5h2f                 1/1     Running   0             31m
+argocd-server-664b7c6878-dh2sb                      1/1     Running   0             31m
+svclb-argocd-server-q6tpx                           2/2     Running   0             16m
+```
 
 
 #### Access UI 
@@ -42,7 +55,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 If you are using a remote machine, remember to set the `--address` flag.
 
-_Example_
+_Example with Address Flag_
 ```
 kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 128.112.93.8
 ```
