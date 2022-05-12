@@ -80,4 +80,27 @@ PASSWORD: fboS9Fj-sBwetVyB
 ```
 
 
+## Add an Application
 
+For this demonstration, I am using Argo Workflows and ArgoCD to showcase the continuous deployment and management side of ArgoCD. YES, ArgoCD managing itself! 
+
+I created a folder `argo-workflows` and got the `quickstart-postgres.yaml` for Argo Workflows into that folder. I also did the same for ArgoCD.
+
+**General Outline**
+
+  1. Create Github Repo
+  2. Clone the repo locally 
+  3. Create a folder for your application deployment `argo-workflows`
+  4. Go to the ArgoCD UI, Login, and select `+ NEW APP`
+  5. Name your application, add the github repo, and specify the folder where your manifests live, `argo-workflows`
+  6. Hit `CREATE`!
+  
+
+
+```
+mkdir argo-workflows
+cd argo-workflows
+wget https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+```
+
+![argocd-setup](https://user-images.githubusercontent.com/22850980/168137213-c1aea901-80eb-4ac9-9399-fa1e46e8629d.png)
