@@ -104,3 +104,5 @@ wget https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/
 ```
 
 ![argocd-setup](https://user-images.githubusercontent.com/22850980/168137213-c1aea901-80eb-4ac9-9399-fa1e46e8629d.png)
+
+If you did not specidy **Automatic** Sync, then you have to manually click Sync when you create the application.
